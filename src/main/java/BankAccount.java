@@ -7,6 +7,7 @@
  */
 public class BankAccount {
     private static BankAccountDao bankAccountDao;
+    private static BankAccountTimeStamp timeStamp;
 
     public static void setBankAccountDao(BankAccountDao bankAccountDao) {
         BankAccount.bankAccountDao = bankAccountDao;
@@ -42,5 +43,13 @@ public class BankAccount {
         else {
             System.out.println("Not enough money to withdraw.");
         }
+    }
+
+    public static void setTimeStamp(BankAccountTimeStamp mockTimeStamp) {
+        timeStamp = mockTimeStamp;
+    }
+
+    public static void getCurrentTime() {
+        timeStamp.getTimeStamp();
     }
 }
