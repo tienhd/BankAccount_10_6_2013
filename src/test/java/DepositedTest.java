@@ -29,9 +29,6 @@ public class DepositedTest {
         double balance = 0;
         double depositedMoney = 50;
         String log = "deposit 50";
-        BankAccount.openAccount(accountNumber);
-
-        BankAccount.deposit(accountNumber,depositedMoney,log);
 
         when(mockDao.getAccount(accountNumber)).thenAnswer(new Answer<Object>() {
             @Override
@@ -41,6 +38,10 @@ public class DepositedTest {
                 return answerDTO;
             }
         });
+
+        BankAccount.deposit(accountNumber,depositedMoney,log);
+
+
 
         ArgumentCaptor<BankAccountDTO> savedAccount = ArgumentCaptor.forClass(BankAccountDTO.class);
         ArgumentCaptor<String> savedLog = ArgumentCaptor.forClass(String.class);
