@@ -31,4 +31,8 @@ public class BankAccount {
         bankAccountDTO.setBalance(newBalance);
         bankAccountDao.save(bankAccountDTO,log);
     }
+
+    public static void withdraw(String accountNumber, double withdrawMoney, String log) {
+
+    }
 }
