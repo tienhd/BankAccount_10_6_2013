@@ -33,6 +33,14 @@ public class BankAccount {
     }
 
     public static void withdraw(String accountNumber, double withdrawMoney, String log) {
-
+        BankAccountDTO bankAccountDTO = bankAccountDao.getAccount(accountNumber);
+        if (bankAccountDTO.getBalance() >= withdrawMoney ) {
+            double newBalance = bankAccountDTO.getBalance() - withdrawMoney;
+            bankAccountDTO.setBalance(newBalance);
+            bankAccountDao.save(bankAccountDTO,log);
+        }
+        else {
+            System.out.println("Not enough money to withdraw.");
+        }
     }
 }
