@@ -12,7 +12,7 @@ import static org.mockito.Mockito.*;
  * To change this template use File | Settings | File Templates.
  */
 public class OpenAccountTest {
-    BankAccountDao mockDao = new BankAccountDao();
+    BankAccountDao mockDao = mock(BankAccountDao.class);
 
     @Before
     public void setUp() {

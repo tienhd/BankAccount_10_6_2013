@@ -17,6 +17,7 @@ public class BankAccount {
     }
 
     public static void openAccount(String accountNumber) {
-
+        BankAccountDTO bankAccountDTO = new BankAccountDTO(accountNumber);
+        BankAccountDao.save(bankAccountDTO);
     }
 }
