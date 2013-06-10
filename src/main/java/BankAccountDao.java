@@ -18,4 +18,8 @@ public class BankAccountDao {
     public BankAccountDTO getAccount(String accountNumber) {
         return null;
     }
+
+    public void deposit(String accountNumber, double depositedMoney, String log) {
+
+    }
 }
