@@ -58,5 +58,7 @@ public class BankAccount {
     }
 
     public static void withdrawMoneyLog(String accountNumber, double withdrawMoney, String log) {
+        String currentTime = timeStamp.getTimeStamp();
+        bankAccountDao.withdrawMoneyLog(accountNumber,-withdrawMoney,currentTime, log);
     }
 }

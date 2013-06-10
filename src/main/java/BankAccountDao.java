@@ -25,4 +25,7 @@ public class BankAccountDao {
 
     public void depositedMoneyLog(String accountNumber, double depositedMoney, String timeStamp, String log) {
     }
+
+    public void withdrawMoneyLog(String accountNumber, double withdrawMoney, String timeStamp, String log) {
+    }
 }
