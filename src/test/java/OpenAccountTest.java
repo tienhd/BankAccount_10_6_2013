@@ -1,7 +1,11 @@
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 /**
@@ -24,7 +28,21 @@ public class OpenAccountTest {
     public void testConnectionToDao() {
         String accountNumber = "1234567890";
         BankAccount.openAccount(accountNumber);
-        verify(mockDao);
+        //verify(mockDao);
+    }
+
+    @Test
+    public void testOpenAccountAndIsPersistentToDB() {
+        String accountNumber = "1234567890";
+        double accountBalance = 0;
+        BankAccount.openAccount(accountNumber);
+
+        ArgumentCaptor<BankAccountDTO> bankDTOCaptor = ArgumentCaptor.forClass(BankAccountDTO.class);
+        verify(mockDao,times(1)).save(bankDTOCaptor.capture());
+
+        assertEquals(bankDTOCaptor.getAllValues().get(0).getAccountNumber(),accountNumber);
+        assertEquals(bankDTOCaptor.getAllValues().get(0).getBalance(),accountBalance,0.001);
+
     }
 
 }

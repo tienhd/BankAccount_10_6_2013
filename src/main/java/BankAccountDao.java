@@ -7,7 +7,11 @@
  */
 public class BankAccountDao {
 
-    public static void save(BankAccountDTO bankAccountDTO) {
+    public BankAccountDao () {
+
+    }
+
+    public void save(BankAccountDTO bankAccountDTO) {
 
     }
 }
