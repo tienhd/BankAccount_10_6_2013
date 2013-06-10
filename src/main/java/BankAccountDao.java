@@ -22,4 +22,7 @@ public class BankAccountDao {
     public void save(BankAccountDTO bankAccountDTO, String log) {
 
     }
+
+    public void depositedMoneyLog(String accountNumber, double depositedMoney, String timeStamp, String log) {
+    }
 }

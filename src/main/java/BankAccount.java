@@ -52,4 +52,8 @@ public class BankAccount {
     public static void getCurrentTime() {
         timeStamp.getTimeStamp();
     }
+    public static void depositedMoneyLog(String accountNumber, double depositedMoney, String log) {
+        String currentTime = timeStamp.getTimeStamp();
+        bankAccountDao.depositedMoneyLog(accountNumber,depositedMoney, currentTime, log);
+    }
 }
