@@ -50,7 +50,7 @@ public class WithdrawLogTest {
         ArgumentCaptor<Double> withdrawMoneyCaptor = ArgumentCaptor.forClass(Double.class);
         ArgumentCaptor<String> timeStampCaptor = ArgumentCaptor.forClass(String.class);
         ArgumentCaptor<String> logCaptor = ArgumentCaptor.forClass(String.class);
-        verify(mockBankAccountDao).depositedMoneyLog(accountNumberCaptor.capture(), withdrawMoneyCaptor.capture(),timeStampCaptor.capture(),logCaptor.capture());
+        verify(mockBankAccountDao).withdrawMoneyLog(accountNumberCaptor.capture(), withdrawMoneyCaptor.capture(),timeStampCaptor.capture(),logCaptor.capture());
 
         assertEquals(accountNumberCaptor.getValue(),accountNumber);
         assertEquals(withdrawMoneyCaptor.getValue(),-withdrawMoney,0.001);
