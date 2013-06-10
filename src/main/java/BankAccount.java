@@ -26,6 +26,6 @@ public class BankAccount {
     }
 
     public static void deposit(String accountNumber, double depositedMoney, String log) {
-        bankAccountDao.deposit(accountNumber,depositedMoney,log);
+
     }
 }

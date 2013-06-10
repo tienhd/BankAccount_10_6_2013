@@ -19,7 +19,7 @@ public class BankAccountDao {
         return null;
     }
 
-    public void deposit(String accountNumber, double depositedMoney, String log) {
+    public void save(BankAccountDTO bankAccountDTO, String log) {
 
     }
 }
