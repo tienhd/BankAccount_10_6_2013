@@ -56,4 +56,7 @@ public class BankAccount {
         String currentTime = timeStamp.getTimeStamp();
         bankAccountDao.depositedMoneyLog(accountNumber,depositedMoney, currentTime, log);
     }
+
+    public static void withdrawMoneyLog(String accountNumber, double withdrawMoney, String log) {
+    }
 }
