@@ -7,7 +7,6 @@
  */
 public class BankAccount {
     private static BankAccountDao bankAccountDao;
-    private static BankAccountTimeStamp timeStamp;
 
     public static void setBankAccountDao(BankAccountDao bankAccountDao) {
         BankAccount.bankAccountDao = bankAccountDao;
@@ -45,20 +44,4 @@ public class BankAccount {
         }
     }
 
-    public static void setTimeStamp(BankAccountTimeStamp mockTimeStamp) {
-        timeStamp = mockTimeStamp;
-    }
-
-    public static void getCurrentTime() {
-        timeStamp.getTimeStamp();
-    }
-    public static void depositedMoneyLog(String accountNumber, double depositedMoney, String log) {
-        String currentTime = timeStamp.getTimeStamp();
-        bankAccountDao.depositedMoneyLog(accountNumber,depositedMoney, currentTime, log);
-    }
-
-    public static void withdrawMoneyLog(String accountNumber, double withdrawMoney, String log) {
-        String currentTime = timeStamp.getTimeStamp();
-        bankAccountDao.withdrawMoneyLog(accountNumber,-withdrawMoney,currentTime, log);
-    }
 }

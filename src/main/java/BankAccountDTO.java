@@ -8,15 +8,18 @@
 public class BankAccountDTO {
     private String accountNumber;
     private double balance;
+    private long timeStamp;
 
     public BankAccountDTO(String accountNumber) {
         this.accountNumber = accountNumber;
         this.balance = 0;
+        this.timeStamp = System.currentTimeMillis();
     }
 
     public BankAccountDTO(String accountNumber, double balance) {
         this.accountNumber = accountNumber;
         this.balance = balance;
+        this.timeStamp = System.currentTimeMillis();
     }
 
     public String getAccountNumber() {
@@ -27,12 +30,19 @@ public class BankAccountDTO {
         return balance;
     }
 
+    public long getTimeStamp() {
+        return timeStamp;
+    }
     public void setBalance(double balance) {
         this.balance = balance;
     }
 
     public void setAccountNumber (String accountNumber) {
         this.accountNumber = accountNumber;
+    }
+
+    public void setTimeStamp (long timeStamp) {
+        this.timeStamp = timeStamp;
     }
 
     @Override
