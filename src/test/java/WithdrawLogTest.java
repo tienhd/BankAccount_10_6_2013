@@ -32,7 +32,7 @@ public class WithdrawLogTest {
     public void testDepositedMoneyLog() {
         String accountNumber = "1234567890";
         double withdrawMoney = 50;
-        String log = "deposit 50";
+        String log = "withdraw 50";
 
         when(mockBankAccountTimeStamp.getTimeStamp()).thenAnswer(new Answer<Object>() {
             @Override
