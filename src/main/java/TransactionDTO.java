@@ -18,10 +18,30 @@ public class TransactionDTO {
         this.log = log;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (o instanceof TransactionDTO) {
-//            //return (accountNumber.equals())
-//        }
-//    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof TransactionDTO) {
+            TransactionDTO transactionDTOObj = (TransactionDTO) o;
+            return ((accountNumber.equals(transactionDTOObj.getAccountNumber())) && (amountMoney == transactionDTOObj.getAmountMoney())
+                    && (timeStamp == transactionDTOObj.getTimeStamp()) && (log.equals(transactionDTOObj.getLog())));
+        }
+        return false;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public double getAmountMoney() {
+        return amountMoney;
+    }
+
+    public long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public String getLog() {
+        return log;
+    }
 }

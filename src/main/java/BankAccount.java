@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: sqv-nbt
@@ -49,7 +51,12 @@ public class BankAccount {
         BankAccount.transactionDao = transactionDao;
     }
 
-    public static void getTransactionOccurred(String accountNumber) {
-        transactionDao.getTransactionOccurred(accountNumber);
+    public static ArrayList<TransactionDTO> getTransactionOccurred(String accountNumber) {
+        return transactionDao.getTransactionOccurred(accountNumber);
+
+    }
+
+    public static ArrayList<TransactionDTO> getTransactionOccurred(String accountNumber, long startTime, long endTime) {
+        return null;
     }
 }

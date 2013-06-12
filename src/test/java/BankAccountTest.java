@@ -4,6 +4,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -62,7 +63,6 @@ public class BankAccountTest {
         ArgumentCaptor <BankAccountDTO> argumentList = ArgumentCaptor.forClass(BankAccountDTO.class);
         verify(mockDao,times(1)).save(argumentList.capture());
         BankAccountDTO argumentDTO = argumentList.getAllValues().get(0);
-        //System.out.println(argumentDTO.getBalance() + " " + argumentDTO.getAccountNumber());
 
         when(mockDao.getAccount(accountNumber)).thenAnswer(new Answer<Object>() {
             @Override
@@ -74,7 +74,6 @@ public class BankAccountTest {
         });
 
         BankAccountDTO answerDTO = mockDao.getAccount(accountNumber);
-        //System.out.println(answerDTO.getBalance() + " " + answerDTO.getAccountNumber());
 
         assertEquals(mockDao.getAccount(accountNumber).getAccountNumber(), accountNumber);
         assertEquals(mockDao.getAccount(accountNumber).getBalance(), 0, 0.001);
@@ -151,6 +150,45 @@ public class BankAccountTest {
         assertEquals(accountNumberCaptor.getValue(),accountNumber);
 
     }
+    @Test
+    public void testGetAllTransactionOccurredByAccountNumberAdvantage() {
+        String accountNumber = "1234567890";
+        long startTime = 100000;
+        long endTime = 100100;
+        BankAccount.getTransactionOccurred(accountNumber,startTime,endTime);
 
+        //Init the return
+        ArrayList<TransactionDTO> dummyTransactionDTO = new ArrayList<TransactionDTO>();
+        TransactionDTO transactionDTO1 = new TransactionDTO(accountNumber,50,100002,"deposited 50");
+        TransactionDTO transactionDTO2 = new TransactionDTO(accountNumber,-50,100005,"withdraw 50");
+        TransactionDTO transactionDTO3 = new TransactionDTO(accountNumber,-50,100200,"withdraw 50");
+        dummyTransactionDTO.add(transactionDTO1);
+        dummyTransactionDTO.add(transactionDTO2);
+        dummyTransactionDTO.add(transactionDTO3);
 
+        when(mockTransactionDao.getTransactionOccurred(accountNumber)).thenReturn(dummyTransactionDTO);
+        ArrayList<TransactionDTO> transactionList = BankAccount.getTransactionOccurred(accountNumber);
+        int i = 0;
+        for (TransactionDTO trans : dummyTransactionDTO) {
+            assertEquals(trans,transactionList.get(i));
+            i++;
+        }
+    }
+
+    @Test
+    public void getTransactionOccurredByAccountNumberAndInTime() {
+        String accountNumber = "1234567890";
+        long startTime = 100000;
+        long endTime = 100100;
+        BankAccount.getTransactionOccurred(accountNumber,startTime,endTime);
+
+        ArgumentCaptor<String> accountNumberCaptor = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<Long> startTimeCaptor = ArgumentCaptor.forClass(Long.class);
+        ArgumentCaptor<Long> endTimeCaptor = ArgumentCaptor.forClass(Long.class);
+
+        verify(mockTransactionDao).getTransactionOccurred(accountNumberCaptor.capture(),startTimeCaptor.capture(),endTimeCaptor.capture());
+        assertEquals(accountNumberCaptor.getValue(),accountNumber);
+        assertEquals(startTimeCaptor.getValue(),startTime,0.001);
+        assertEquals(endTimeCaptor.getValue(),endTime,0.001);
+    }
 }
