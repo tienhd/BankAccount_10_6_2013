@@ -18,6 +18,7 @@ import static org.mockito.Mockito.*;
  */
 public class BankAccountTest {
     BankAccountDao mockDao = mock(BankAccountDao.class);
+    TransactionDao mockTransactionDao = mock(TransactionDao.class);
 
     @Before
     public void setUp() {
@@ -138,6 +139,17 @@ public class BankAccountTest {
         assertEquals(savedLog.getValue(),log);
     }
 
+    @Test
+    public void testGetTransactionOccurredByAccountNumber() {
+        String accountNumber = "1234567890";
+        BankAccount.getTransactionOccurred(accountNumber);
+
+        ArgumentCaptor<String> accountNumberCaptor = ArgumentCaptor.forClass(String.class);
+
+        verify(mockTransactionDao).getTransactionOccurred(accountNumberCaptor.capture());
+        assertEquals(accountNumberCaptor.getValue(),accountNumber);
+
+    }
 
 
 }

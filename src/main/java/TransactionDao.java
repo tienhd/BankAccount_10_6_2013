@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: sqv-nbt
@@ -11,6 +13,10 @@ public class TransactionDao {
     }
 
     public TransactionDTO withdrawMoneyLog(String accountNumber, double withdrawMoney, long timeStamp, String log) {
+        return null;
+    }
+
+    public ArrayList<TransactionDTO> getTransactionOccurred(String accountNumber) {
         return null;
     }
 }

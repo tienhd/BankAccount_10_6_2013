@@ -44,4 +44,7 @@ public class BankAccount {
         }
     }
 
+    public static void getTransactionOccurred(String accountNumber) {
+
+    }
 }
