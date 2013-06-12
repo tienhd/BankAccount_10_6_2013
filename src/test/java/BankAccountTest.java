@@ -252,6 +252,8 @@ public class BankAccountTest {
     public void getNTransactionOccurredThrowException() {
         String accountNumber = "1234567890";
         int n = -2;
-        when(mockTransactionDao.getTransactionOccurred(accountNumber,n)).thenThrow(new IllegalArgumentException());
+        when(mockTransactionDao.getTransactionOccurred(accountNumber,n)).thenReturn(null);
+        ArrayList<TransactionDTO> transactionList = BankAccount.getTransactionOccurred(accountNumber,n);
+        verify(mockTransactionDao.getTransactionOccurred(accountNumber,n));
     }
 }
