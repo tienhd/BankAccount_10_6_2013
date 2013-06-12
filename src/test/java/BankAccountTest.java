@@ -214,9 +214,21 @@ public class BankAccountTest {
             i++;
         }
     }
-
     @Test
     public void getNTransactionOccurredByAccountNumber() {
+        String accountNumber = "1234567890";
+        int n = 2;
+        BankAccount.getTransactionOccurred(accountNumber,n);
+        ArgumentCaptor<String> accountNumberCaptor = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<Integer> numberCaptor = ArgumentCaptor.forClass(Integer.class);
+        verify(mockTransactionDao).getTransactionOccurred(accountNumberCaptor.capture(),numberCaptor.capture());
+
+        assertEquals(accountNumberCaptor.getValue(),accountNumber);
+        assertEquals(numberCaptor.getValue().intValue(),n);
+    }
+
+    @Test
+    public void getNTransactionOccurredByAccountNumberAdvantage() {
         String accountNumber = "1234567890";
         int n = 2;
         BankAccount.getTransactionOccurred(accountNumber,n);
@@ -234,6 +246,5 @@ public class BankAccountTest {
             assertEquals(trans,transactionList.get(i));
             i++;
         }
-
     }
 }
