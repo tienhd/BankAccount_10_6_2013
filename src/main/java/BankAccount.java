@@ -61,6 +61,9 @@ public class BankAccount {
     }
 
     public static ArrayList<TransactionDTO> getTransactionOccurred(String accountNumber, int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException();
+        }
         return transactionDao.getTransactionOccurred(accountNumber,n);
     }
 }
