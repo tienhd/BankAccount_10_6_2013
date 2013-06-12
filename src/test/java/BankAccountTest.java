@@ -247,4 +247,11 @@ public class BankAccountTest {
             i++;
         }
     }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void getNTransactionOccurredThrowException() {
+        String accountNumber = "1234567890";
+        int n = -2;
+        when(mockTransactionDao.getTransactionOccurred(accountNumber,n)).thenThrow(new IllegalArgumentException());
+    }
 }
