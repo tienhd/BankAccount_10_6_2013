@@ -191,4 +191,49 @@ public class BankAccountTest {
         assertEquals(startTimeCaptor.getValue(),startTime,0.001);
         assertEquals(endTimeCaptor.getValue(),endTime,0.001);
     }
+
+    @Test
+    public void getTransactionOccurredByAccountNumberAndInTimeAdvantage() {
+        String accountNumber = "1234567890";
+        long startTime = 100000;
+        long endTime = 100100;
+        BankAccount.getTransactionOccurred(accountNumber,startTime,endTime);
+
+        //Init the return
+        ArrayList<TransactionDTO> dummyTransactionDTO = new ArrayList<TransactionDTO>();
+        TransactionDTO transactionDTO1 = new TransactionDTO(accountNumber,50,100002,"deposited 50");
+        TransactionDTO transactionDTO2 = new TransactionDTO(accountNumber,-50,100015,"withdraw 50");
+        dummyTransactionDTO.add(transactionDTO1);
+        dummyTransactionDTO.add(transactionDTO2);
+
+        when(mockTransactionDao.getTransactionOccurred(accountNumber,startTime,endTime)).thenReturn(dummyTransactionDTO);
+        ArrayList<TransactionDTO> transactionList = BankAccount.getTransactionOccurred(accountNumber,startTime,endTime);
+        int i = 0;
+        for (TransactionDTO trans : dummyTransactionDTO) {
+            assertEquals(trans,transactionList.get(i));
+            i++;
+        }
+    }
+
+    @Test
+    public void getNTransactionOccurredByAccountNumber() {
+        String accountNumber = "1234567890";
+        int n = 2;
+        BankAccount.getTransactionOccurred(accountNumber,n);
+
+        ArrayList<TransactionDTO> dummyTransactionDTO = new ArrayList<TransactionDTO>();
+        TransactionDTO transactionDTO1 = new TransactionDTO(accountNumber,50,100002,"deposited 50");
+        TransactionDTO transactionDTO2 = new TransactionDTO(accountNumber,-50,100015,"withdraw 50");
+        dummyTransactionDTO.add(transactionDTO1);
+        dummyTransactionDTO.add(transactionDTO2);
+
+        when(mockTransactionDao.getTransactionOccurred(accountNumber,n)).thenReturn(dummyTransactionDTO);
+        ArrayList<TransactionDTO> transactionList = BankAccount.getTransactionOccurred(accountNumber,n);
+        int i = 0;
+        for (TransactionDTO trans : dummyTransactionDTO) {
+            assertEquals(trans,transactionList.get(i));
+            i++;
+        }
+
+    }
 }
