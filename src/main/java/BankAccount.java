@@ -61,6 +61,6 @@ public class BankAccount {
     }
 
     public static ArrayList<TransactionDTO> getTransactionOccurred(String accountNumber, int n) {
-        return null;
+        return transactionDao.getTransactionOccurred(accountNumber,n);
     }
 }
