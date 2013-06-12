@@ -24,6 +24,7 @@ public class BankAccountTest {
     public void setUp() {
         reset(mockDao);
         BankAccount.setBankAccountDao(mockDao);
+        BankAccount.setTransactionDao(mockTransactionDao);
     }
 
     @Test

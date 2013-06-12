@@ -7,6 +7,7 @@
  */
 public class BankAccount {
     private static BankAccountDao bankAccountDao;
+    private static TransactionDao transactionDao;
 
     public static void setBankAccountDao(BankAccountDao bankAccountDao) {
         BankAccount.bankAccountDao = bankAccountDao;
@@ -44,7 +45,11 @@ public class BankAccount {
         }
     }
 
-    public static void getTransactionOccurred(String accountNumber) {
+    public static void setTransactionDao(TransactionDao transactionDao) {
+        BankAccount.transactionDao = transactionDao;
+    }
 
+    public static void getTransactionOccurred(String accountNumber) {
+        transactionDao.getTransactionOccurred(accountNumber);
     }
 }
